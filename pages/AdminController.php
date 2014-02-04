@@ -70,11 +70,13 @@ Class AdminController extends Controller
                 ':body' => $article,
             );
 
-            $this->app['sql']->prepareExec($sql, $arguments);
+            $request = $this->app['sql']->prepareExec($sql, $arguments);
         }
 
         if (!empty($tags)){
 
+            $lastId = $this->app['sql']->lastId();
+            
             foreach ($tags as &$value) {
                  $sql = "INSERT INTO articles_tag (
                         id ,
@@ -83,11 +85,12 @@ Class AdminController extends Controller
                     )
                     VALUES (
                         NULL ,
+                        :lastId,
                         :tag
                     )";
 
                     $arguments = array(
-                        
+                        ':lastId' => $lastId,
                         ':tag' => $value,
                     );
 

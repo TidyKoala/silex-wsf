@@ -58,4 +58,7 @@ Class Sql
         return $statement;
     }
 
+    public function lastId(){
+        return $this->pdo->lastInsertId();
+    }
 }
