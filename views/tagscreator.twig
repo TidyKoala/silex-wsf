@@ -1,0 +1,20 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<form action="" method="post">
+ 
+	<h2>Existing tags:</h2>
+    <ul>
+    	{% for tag in tags %}
+    	<li>{{ tag.name }}</li>
+		{% endfor %}
+    </ul>
+
+    <h3>Add your tag below </h3>
+    <label for="tag">Tag :</label>
+    <input type="text" name="tag" id="tag" />
+    
+
+    <input type="submit" />
+</form>
+{% endblock %}

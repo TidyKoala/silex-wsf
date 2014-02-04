@@ -1,0 +1,28 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{% if errors is defined %}
+	<p>Erreurs: </p>
+	<ul>
+		{% for error in errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+	{% endif%} 
+    <form action="{{ app.url_generator.generate('postRegister') }}" method="post">
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email" required/>
+
+        <label for="password">Password :</label>
+        <input type="password" name="password" id="password" required/>
+
+        <label for="password_confirmation">Password confirmation:</label>
+        <input type="password" name="password confirmation" id="password_confirmation" required/>
+
+        <label for="name">Name :</label>
+        <input type="text" name="name" id="name" required/>
+
+        <input type="submit"/>
+    </form>
+{% endblock %}

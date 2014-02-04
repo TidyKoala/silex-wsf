@@ -8,13 +8,33 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="/silex-wsf/public/">Home</a>
+                        <a href="{{ app.url_generator.generate('home') }}">Home</a>
+                    </li>
+                    {% if user is defined %}
+                        {% if user %}
+                    <li>
+                        <a href="{{ app.url_generator.generate('getAdmin') }}">Admin</a>
                     </li>
                     <li>
-                        <a href="/silex-wsf/public/admin">Admin</a>
+                        <a href="{{ app.url_generator.generate('tagscreator') }}">Tags creator</a>
                     </li>
+                        {% else %}
+                    <li>
+                        <a href="{{ app.url_generator.generate('register') }}">Register</a>
+                    </li>
+                        {% endif %}
+                    {% endif %}
                 </ul>
             </nav>
+            <div>
+            {% if user is defined %}
+                {% if user %}
+                    <p>Bienvenue {{ user.name }}</p>
+                {% else %}
+                    <a href="{{ app.url_generator.generate('login') }}">Login</a>
+                {% endif %}
+            {% endif %}
+            </div>
         </header>
         <div id="content">{% block content %}{% endblock %}</div>
         <div id="footer">
